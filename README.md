@@ -5,7 +5,9 @@
 ---
 
 ## 📷 ตัวอย่างการใช้งาน
+
 ![Pico Relay Control](screenshot1.png)
+
 > บอร์ด Waveshare Pico-Relay-B เชื่อมต่อ WiFi และแสดงหน้า Web UI สำหรับควบคุม Relay GPIO 14
 
 ---
@@ -26,9 +28,57 @@ pico-iot-server/
 
 | อุปกรณ์ | รายละเอียด |
 |---|---|
-| **Raspberry Pi Pico W** | ไมโครคอนโทรลเลอร์ที่มี WiFi ในตัว |
-| **Waveshare Pico-Relay-B** | บอร์ด Relay 8 ช่อง สำหรับ Pico |
+| **Raspberry Pi Pico W** | ไมโครคอนโทรลเลอร์ที่มี WiFi ในตัว (RP2040 + CYW43439) |
+| **Waveshare Pico-Relay-B** | บอร์ด Relay 8 ช่อง ระดับ Industrial สำหรับ Pico |
 | **WiFi Router** | เครือข่ายท้องถิ่น (LAN) |
+
+---
+
+## 🧩 Waveshare Pico-Relay-B — รายละเอียดฮาร์ดแวร์
+
+> 🔗 [Industrial 8-Channel Relay Module For Raspberry Pi Pico](https://www.waveshare.com/pico-relay-b.htm)
+
+บอร์ด **Pico-Relay-B** เป็น Relay Module ระดับ Industrial ออกแบบมาให้ Raspberry Pi Pico เสียบลงไปโดยตรง รองรับการควบคุมอุปกรณ์ไฟฟ้าทั้ง AC และ DC กำลังสูง
+
+### คุณสมบัติหลัก
+
+| คุณสมบัติ | รายละเอียด |
+|---|---|
+| **Relay** | 8 ช่อง (Contact form: 1NO 1NC) |
+| **Voltage Rating** | ≤10A 250V AC หรือ ≤10A 30V DC ต่อช่อง |
+| **Operating Voltage** | 5V (จาก USB ของ Pico W) |
+| **Power Isolation** | Onboard unibody power supply isolation |
+| **Signal Isolation** | Photocoupler (Optocoupler) isolation |
+| **Enclosure** | ABS พร้อม Rail-mount รองรับการติดตั้งบน DIN Rail |
+| **ขนาด** | 88 × 122 mm |
+
+### ระบบป้องกัน (Isolation)
+
+- **Power Supply Isolation** — วงจรจ่ายไฟแยกอิสระจากฝั่ง High-voltage ไม่ต้องใช้แหล่งจ่ายไฟเพิ่ม
+- **Photocoupler Isolation** — สัญญาณควบคุมจาก GPIO ถูกแยกด้วย Optocoupler ป้องกันสัญญาณรบกวนและกระแสย้อนกลับจากโหลดแรงดันสูง
+
+### GPIO Mapping (Relay ↔ Pico GPIO)
+
+| Relay | GPIO |
+|---|---|
+| Relay 1 | GP21 |
+| Relay 2 | GP20 |
+| Relay 3 | GP19 |
+| Relay 4 | GP18 |
+| Relay 5 | GP17 |
+| Relay 6 | GP16 |
+| Relay 7 | GP15 |
+| **Relay 8 (ใช้ในโปรเจคนี้)** | **GP14** |
+
+> **หมายเหตุ:** โปรเจคนี้ใช้ **Relay 8 (GP14)** เป็นตัวอย่าง สามารถขยายไปควบคุม Relay อื่นๆ ได้โดยเพิ่ม GPIO ตามตาราง
+
+### องค์ประกอบอื่นบนบอร์ด
+
+- **WS2812 RGB LED** — LED แสดงสถานะแบบ Addressable
+- **Passive Buzzer** — สำหรับแจ้งเตือนเสียง
+- **PWR Indicator LED** — แสดงสถานะไฟเลี้ยง
+- **LED ต่อ Relay** — แสดงสถานะแต่ละ Channel
+- **Breakout USB + BOOT pin** — Debug ได้โดยไม่ต้องถอดกล่อง
 
 ---
 
