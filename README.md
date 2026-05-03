@@ -5,7 +5,7 @@
 ---
 
 ## 📷 ตัวอย่างการใช้งาน
-
+![Pico Relay Control](screenshot1.png)
 > บอร์ด Waveshare Pico-Relay-B เชื่อมต่อ WiFi และแสดงหน้า Web UI สำหรับควบคุม Relay GPIO 14
 
 ---
